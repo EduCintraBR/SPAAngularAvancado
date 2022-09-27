@@ -1,0 +1,19 @@
+import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './navegacao/home/home.component';
+import { SobreComponent } from './institucional/sobre/sobre.component';
+import { NgModule } from '@angular/core';
+import { CadastroComponent } from './cadastro/cadastro.component';
+
+export const rootRouterConfig: Routes = [
+    { path: '', redirectTo: '/home', pathMatch: 'full'},
+    { path: 'home', component: HomeComponent},
+    { path: 'sobre', component: SobreComponent },
+    { path: 'cadastro', component: CadastroComponent}
+];
+
+@NgModule({
+    imports:[ RouterModule.forRoot(rootRouterConfig) ],
+    exports:[ RouterModule ]
+})
+
+export class AppRoutingModule{}

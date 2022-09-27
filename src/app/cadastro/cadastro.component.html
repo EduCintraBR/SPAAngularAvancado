@@ -1,0 +1,74 @@
+<div class="container main-container">
+    <h4>Demo Cadastro</h4>
+    <hr>
+    <form novalidate (ngSubmit)="adicionarUsuario()" [formGroup]="cadastroForm">
+        <div class="form-horizontal">
+
+            <div class="form-group">
+                <label class="col-md-2" for="nome">Nome Completo</label>
+                <div class="col-md-10">
+                    <input class="form-control" id="nome" type="text" placeholder="Nome requerido(a)" 
+                    formControlName="nome" [ngClass]="{'is-invalid': validaCampoFormulario('nome')}" />
+                    <div class="text-danger" *ngIf="validaCampoFormulario('nome', 'required')">
+                        <span>O Campo Nome é obrigatório</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2" for="nome">CPF</label>
+                <div class="col-md-10">
+                    <input class="form-control" id="cpf" type="text" placeholder="CPF requerido(a)" 
+                    formControlName="cpf" cpf [textMask]="{mask: MASKS.cpf.textMask}" />
+                    <div class="text-danger" *ngIf="validaCampoFormulario('cpf', 'required')">
+                        <span>O Campo CPF é obrigatório</span>
+                    </div>
+                    <div class="text-danger" *ngIf="cadastroForm.get('cpf')?.errors?.cpf && (cadastroForm.get('cpf').dirty || cadastroForm.get('cpf').touched)">
+                        <span>O Formato do CPF está inválido</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2" for="nome">Email</label>
+                <div class="col-md-10">
+                    <input class="form-control" id="email" type="email" placeholder="Email requerido(a)" formControlName="email"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2" for="nome">Senha</label>
+                <div class="col-md-10">
+                    <input class="form-control" id="senha" type="password" placeholder="Senha requerido(a)" formControlName="senha"/>
+                    <div class="text-danger" *ngIf="cadastroForm.get('senha')?.errors?.rangeLength && (cadastroForm.get('senha').dirty || cadastroForm.get('senha').touched)">
+                        <span>Tamanho de senha deve ser entre (6-15) caracteres</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2" for="nome">Confirme a Senha</label>
+                <div class="col-md-10">
+                    <input class="form-control" id="senhaConfirmacao" type="password" placeholder="Confirme a Senha requerido(a)" formControlName="confirmarSenha"/>
+                    <div class="text-danger" *ngIf="cadastroForm.get('confirmarSenha')?.errors?.equalTo && (cadastroForm.get('confirmarSenha').dirty || cadastroForm.get('confirmarSenha').touched)">
+                        <span>As senhas não se coincidem.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-10">
+                    <input class="btn btn-success" id="Registrar" type="submit" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-10">
+                    <span> Formulário valido: {{ cadastroForm.valid }} </span>
+                </div>
+                <div class="col-md-10">
+                    <span> Formulário tocado: {{ cadastroForm.touched }} </span>
+                </div>
+                <div class="col-md-10">
+                    <span> Formulário sujo: {{ cadastroForm.dirty }} </span>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
